@@ -9,7 +9,7 @@ export async function getAnimeById(id: string): Promise<AnimeDetailResponse> {
     `${isServer ? process.env.BASE_URL : ""}/api/anime/${id}`
   );
   const result = await res.json();
-  if (!res.ok) {
+  if (res.status != 200) {
     throw new Error(result["message"] || "Failed to fetch data");
   }
   return result;
@@ -25,7 +25,7 @@ export async function getAnimeVideoEpisodesById(
       new URLSearchParams({ page })
   );
   const result = await res.json();
-  if (!res.ok) {
+  if (res.status != 200) {
     throw new Error(result["message"] || "Failed to fetch data");
   }
   return result;
@@ -41,7 +41,7 @@ export async function getAnimeReviewsById(
       new URLSearchParams({ page })
   );
   const result = await res.json();
-  if (!res.ok) {
+  if (res.status != 200) {
     throw new Error(result["message"] || "Failed to fetch data");
   }
   return result;
@@ -55,7 +55,7 @@ export async function getAnimeRecommendationsById(
     `${isServer ? process.env.BASE_URL : ""}/api/anime/${id}/recommendations`
   );
   const result = await res.json();
-  if (!res.ok) {
+  if (res.status != 200) {
     throw new Error(result["message"] || "Failed to fetch data");
   }
   return result;

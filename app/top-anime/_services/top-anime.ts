@@ -10,7 +10,7 @@ export async function getTopAnime(
       new URLSearchParams({ type, page: `${page}` })
   );
   const result = await res.json();
-  if (!res.ok) {
+  if (res.status != 200) {
     throw new Error(result["message"] || "Failed to fetch data");
   }
   return result;

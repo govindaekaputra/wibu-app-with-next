@@ -16,7 +16,7 @@ export async function getSearchAnime(
       })
   );
   const result = await res.json();
-  if (!res.ok) {
+  if (res.status != 200) {
     throw new Error(result["message"] || "Failed to fetch data");
   }
   return result;
@@ -28,7 +28,7 @@ export async function getGenres(): Promise<GenreListResponse> {
     `${isServer ? process.env.BASE_URL : ""}/api/anime/genre`
   );
   const result = await res.json();
-  if (!res.ok) {
+  if (res.status != 200) {
     throw new Error(result["message"] || "Failed to fetch data");
   }
   return result;
