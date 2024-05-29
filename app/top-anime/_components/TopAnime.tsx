@@ -3,12 +3,15 @@
 import useTopAnime from "../_hooks/useTopAnime";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "@/app/_components/Card";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function TopAnime() {
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type") || "tv";
   const { isFetchData, data, hasNextPage, errMessage, fetchTopAnime } =
-    useTopAnime();
+    useTopAnime({ type });
   const router = useRouter();
+
   return (
     <InfiniteScroll
       next={fetchTopAnime}

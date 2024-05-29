@@ -3,9 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 import { getTopAnime } from "../_services/top-anime";
 import Anime from "@/app/_models/anime";
 
-export default function useTopAnime() {
-  const searchParams = useSearchParams();
-  const type = searchParams.get("type") || "tv";
+export default function useTopAnime(props: { type: string }) {
+  const { type } = props;
   const [page, setPage] = useState(1);
   const [isFetchData, setIsFetchData] = useState(true);
   const [hasNextPage, setHasNextPage] = useState(true);
